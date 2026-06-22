@@ -18,6 +18,16 @@ public class DrugDictionary {
             "Omeprazole", "acidity and stomach ulcer relief"});
         drugs.put("ibuprofen", new String[]{
             "Ibuprofen", "pain and inflammation relief"});
+        drugs.put("metoprolol", new String[]{
+            "Metoprolol", "blood pressure and heart rate control"});
+        drugs.put("atorvastatin", new String[]{
+            "Atorvastatin", "cholesterol reduction"});
+        drugs.put("aspirin", new String[]{
+            "Aspirin", "blood thinning and pain relief"});
+        drugs.put("ciprofloxacin", new String[]{
+            "Ciprofloxacin", "bacterial infection treatment"});
+        drugs.put("cetirizine", new String[]{
+            "Cetirizine", "allergy relief"});
     }
 
     public static boolean isDrugKnown(String drugName) {
