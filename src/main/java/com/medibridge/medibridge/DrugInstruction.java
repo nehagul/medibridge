@@ -8,16 +8,12 @@ public class DrugInstruction {
     private String instruction;
     private String disclaimer;
 
-    public DrugInstruction(String drugName, String dose, String frequency) {
+    public DrugInstruction(String drugName, String dose, String frequency, String drugUse) {
         this.drugName = drugName;
         this.dose = dose;
         this.frequency = frequency;
         this.disclaimer = "WARNING: This information is for help only. Doctor's instruction is final.";
-        this.instruction = generateInstruction();
-    }
-
-    private String generateInstruction() {
-        return "Take " + dose + " of " + drugName + " " + frequency + ".";
+        this.instruction = "Take " + dose + " of " + drugName + " " + frequency + ". Used for: " + drugUse + ".";
     }
 
     public String getDrugName() { return drugName; }
