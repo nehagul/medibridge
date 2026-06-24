@@ -32,3 +32,18 @@ MediBridge converts prescriptions into simple, clear instructions with:
 
 ## Developer
 Neha Gul — CS Student, Islamabad
+
+## Real User Testing — Phase 1
+
+**Date:** 24 June 2026  
+**Users Tested:** 3 family members (non-technical users)
+
+| User | Age | Background | Feedback |
+|------|-----|------------|----------|
+| Mother | 47 | School Teacher | "Instructions were very clear. I understood exactly when and how to take the medicine." |
+| Father | 50 | Non-technical user | "Very useful. The warning about consulting doctor is important and reassuring." |
+| Sister | 17 | College Student | "Simple and easy to understand. Better than reading a prescription label." |
+
+**Overall Result:** All 3 users successfully understood medication instructions without any assistance.  
+**Key Finding:** Disclaimer and doctor warning was noticed and appreciated by all users.  
+**Conclusion:** MediBridge Phase 1 effectively communicates prescription information to non-technical users.
