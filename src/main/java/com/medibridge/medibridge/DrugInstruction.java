@@ -8,11 +8,11 @@ public class DrugInstruction {
     private String instruction;
     private String disclaimer;
 
-    public DrugInstruction(String drugName, String dose, String frequency, String drugUse) {
+    public DrugInstruction(String drugName, String dose, String frequency, String drugUse, String disclaimer) {
         this.drugName = drugName;
         this.dose = dose;
         this.frequency = frequency;
-        this.disclaimer = "WARNING: This information is for help only. Doctor's instruction is final.";
+        this.disclaimer = disclaimer;
         this.instruction = "Take " + dose + " of " + drugName + " " + frequency + ". Used for: " + drugUse + ".";
     }
 
