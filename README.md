@@ -35,15 +35,26 @@ Neha Gul — CS Student, Islamabad
 
 ## Real User Testing — Phase 1
 
-**Date:** 24 June 2026  
+**Date:** June 2026  
 **Users Tested:** 3 family members (non-technical users)
 
 | User | Age | Background | Feedback |
 |------|-----|------------|----------|
-| Mother | 47 | School Teacher | "Instructions were very clear. I understood exactly when and how to take the medicine." |
-| Father | 50 | Non-technical user | "Very useful. The warning about consulting doctor is important and reassuring." |
-| Sister | 17 | College Student | "Simple and easy to understand. Better than reading a prescription label." |
+| Mother | 47 | School Teacher | "Very clear and easy to understand. The doctor warning at the end is very important." |
+| Father | 50 | Non-technical user | "Instructions were clear but it would be better in Urdu language." |
+| Sister | 17 | College Student | "This is really effective and helpful. A proper interface with buttons would make it even more user friendly." |
 
-**Overall Result:** All 3 users successfully understood medication instructions without any assistance.  
-**Key Finding:** Disclaimer and doctor warning was noticed and appreciated by all users.  
-**Conclusion:** MediBridge Phase 1 effectively communicates prescription information to non-technical users.
+**Overall Result:** All 3 users successfully understood medication instructions without any assistance.
+
+**What worked well:**
+- Medication instructions were clear and simple
+- Doctor disclaimer was noticed and appreciated by all users
+- Drug name and dose information was easy to read
+
+**Improvements needed (Phase 2 goals):**
+- Add Urdu language support — requested by Father
+- Add audio output — especially for elderly users
+- Add visual icons/pictures and proper interface — requested by Sister
+- Make interface more colorful and friendly
+
+**Conclusion:** MediBridge Phase 1 successfully communicates prescription information to non-technical users. User feedback directly shapes Phase 2 development priorities.
