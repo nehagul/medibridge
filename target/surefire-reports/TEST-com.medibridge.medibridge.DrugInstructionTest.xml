@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.medibridge.medibridge.DrugDictionaryTest" time="0.205" tests="5" errors="0" skipped="0" failures="0" flakes="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.medibridge.medibridge.DrugInstructionTest" time="0.069" tests="5" errors="0" skipped="0" failures="0" flakes="0">
   <properties>
     <property name="java.specification.version" value="24"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -57,9 +57,9 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="68.0"/>
   </properties>
-  <testcase name="testKnownDrug" classname="com.medibridge.medibridge.DrugDictionaryTest" time="0.116"/>
-  <testcase name="testUnknownDrugMessage" classname="com.medibridge.medibridge.DrugDictionaryTest" time="0.008"/>
-  <testcase name="testCaseInsensitive" classname="com.medibridge.medibridge.DrugDictionaryTest" time="0.003"/>
-  <testcase name="testUnknownDrug" classname="com.medibridge.medibridge.DrugDictionaryTest" time="0.004"/>
-  <testcase name="testDrugUse" classname="com.medibridge.medibridge.DrugDictionaryTest" time="0.004"/>
+  <testcase name="testDoseStored" classname="com.medibridge.medibridge.DrugInstructionTest" time="0.007"/>
+  <testcase name="testFrequencyStored" classname="com.medibridge.medibridge.DrugInstructionTest" time="0.002"/>
+  <testcase name="testDrugNameStored" classname="com.medibridge.medibridge.DrugInstructionTest" time="0.004"/>
+  <testcase name="testDisclaimerPresent" classname="com.medibridge.medibridge.DrugInstructionTest" time="0.044"/>
+  <testcase name="testInstructionGeneration" classname="com.medibridge.medibridge.DrugInstructionTest" time="0.001"/>
 </testsuite>
