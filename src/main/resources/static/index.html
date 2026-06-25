@@ -106,6 +106,19 @@
             font-weight: bold;
             line-height: 1.5;
         }
+        .speak-btn {
+            width: 100%;
+            margin-top: 15px;
+            padding: 12px;
+            background: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .speak-btn:hover { background: #388e3c; }
     </style>
 </head>
 <body>
@@ -156,7 +169,18 @@
                 resultDiv.innerHTML = `
                     <div class="instruction">✅ ${data.instruction}</div>
                     <div class="disclaimer">⚠️ ${data.disclaimer}</div>
+                    <button class="speak-btn" id="speakBtn">
+                        🔊 Listen to Instructions
+                    </button>
                 `;
+
+                document.getElementById('speakBtn').addEventListener('click', function() {
+                    speechSynthesis.cancel();
+                    const msg = new SpeechSynthesisUtterance(data.instruction + '. ' + data.disclaimer);
+                    msg.lang = 'en-US';
+                    msg.rate = 0.8;
+                    speechSynthesis.speak(msg);
+                });
             }
         }
     </script>
