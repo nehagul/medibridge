@@ -16,9 +16,20 @@ public class PrescriptionController {
             @RequestParam String dose,
             @RequestParam String frequency) {
 
+        // Unknown drug check
         if (!DrugDictionary.isDrugKnown(drugName)) {
             return new ErrorResponse(
                 "Drug not recognised. Please consult your doctor.",
+                drugName,
+                disclaimerService.getUnknownDrugDisclaimer()
+            );
+        }
+
+        // Dose not sure check
+        if (dose.toLowerCase().trim().equals("not sure") || 
+            dose.toLowerCase().trim().equals("not sure")) {
+            return new ErrorResponse(
+                "Dose is unknown. Please consult your doctor or pharmacist for the correct dose.",
                 drugName,
                 disclaimerService.getUnknownDrugDisclaimer()
             );

@@ -32,14 +32,30 @@
             text-align: center;
             color: #888;
             font-size: 14px;
-            margin-bottom: 35px;
+            margin-bottom: 5px;
+        }
+        .subtitle-urdu {
+            text-align: center;
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 30px;
+            direction: rtl;
         }
         label {
             display: block;
             font-weight: 600;
             color: #2c3e8c;
-            margin-bottom: 6px;
+            margin-bottom: 3px;
             font-size: 15px;
+        }
+        .label-urdu {
+            display: block;
+            font-weight: 600;
+            color: #5b4fcf;
+            margin-bottom: 6px;
+            font-size: 14px;
+            direction: rtl;
+            text-align: right;
         }
         input {
             width: 100%;
@@ -145,17 +161,20 @@
     <div class="container">
         <h1>🏥 MediBridge</h1>
         <p class="subtitle">AI Prescription Helper for Everyone</p>
+        <p class="subtitle-urdu">ہر کسی کے لیے نسخہ مددگار</p>
 
-        <label>💊 Drug Name:</label>
-        <input type="text" id="drugName" placeholder="e.g. Paracetamol" />
+        <label>💊 Drug Name — دوائی کا نام:</label>
+        <input type="text" id="drugName" placeholder="e.g. Paracetamol — مثال: پیراسیٹامول" />
 
-        <label>📏 Dose:</label>
-        <input type="text" id="dose" placeholder="e.g. 500mg" />
+        <label>📏 Dose — خوراک:</label>
+        <input type="text" id="dose" placeholder="e.g. 500mg — یا لکھیں: not sure" />
 
-        <label>🕐 Frequency:</label>
-        <input type="text" id="frequency" placeholder="e.g. twice daily" />
+        <label>🕐 Frequency — کتنی بار:</label>
+        <input type="text" id="frequency" placeholder="e.g. twice daily — دن میں دو بار" />
 
-        <button onclick="getPrescription()">Get Instructions</button>
+        <button onclick="getPrescription()">
+            Get Instructions — ہدایات حاصل کریں
+        </button>
 
         <div class="result" id="result"></div>
     </div>
@@ -167,7 +186,7 @@
             const frequency = document.getElementById('frequency').value;
 
             if (!drugName || !dose || !frequency) {
-                alert('Please fill all fields!');
+                alert('Please fill all fields! — براہ کرم تمام خانے بھریں!');
                 return;
             }
 
@@ -193,7 +212,7 @@
                     <div class="urdu-instruction">${data.urduInstruction}</div>
                     <div class="disclaimer">⚠️ ${data.disclaimer}</div>
                     <button class="speak-btn" id="speakBtn">
-                        🔊 Listen to Instructions
+                        🔊 Listen to Instructions — سنیں
                     </button>
                 `;
 
