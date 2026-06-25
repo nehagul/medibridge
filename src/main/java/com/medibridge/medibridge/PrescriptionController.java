@@ -25,8 +25,9 @@ public class PrescriptionController {
         }
 
         String drugUse = DrugDictionary.getDrugUse(drugName);
+        String urduDrugUse = DrugDictionary.getUrduDrugUse(drugName);
         DrugInstruction instruction = new DrugInstruction(
-            drugName, dose, frequency, drugUse,
+            drugName, dose, frequency, drugUse, urduDrugUse,
             disclaimerService.getMainDisclaimer()
         );
         return instruction;

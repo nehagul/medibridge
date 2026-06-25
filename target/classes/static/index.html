@@ -91,6 +91,18 @@
             margin-bottom: 10px;
             line-height: 1.5;
         }
+        .urdu-instruction {
+            font-size: 17px;
+            color: #1a5276;
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.8;
+            text-align: right;
+            direction: rtl;
+            background-color: #EBF5FB;
+            padding: 10px 12px;
+            border-radius: 8px;
+        }
         .disclaimer {
             font-size: 13px;
             color: #e65100;
@@ -119,6 +131,14 @@
             font-weight: bold;
         }
         .speak-btn:hover { background: #388e3c; }
+        .lang-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
     </style>
 </head>
 <body>
@@ -167,7 +187,10 @@
             } else {
                 resultDiv.className = 'result success';
                 resultDiv.innerHTML = `
+                    <div class="lang-label">🇬🇧 English</div>
                     <div class="instruction">✅ ${data.instruction}</div>
+                    <div class="lang-label" style="margin-top:10px">🇵🇰 اردو</div>
+                    <div class="urdu-instruction">${data.urduInstruction}</div>
                     <div class="disclaimer">⚠️ ${data.disclaimer}</div>
                     <button class="speak-btn" id="speakBtn">
                         🔊 Listen to Instructions
