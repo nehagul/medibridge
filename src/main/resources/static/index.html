@@ -13,6 +13,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            padding: 20px 0;
         }
         .container {
             background-color: white;
@@ -38,8 +39,16 @@
             text-align: center;
             color: #888;
             font-size: 14px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             direction: rtl;
+        }
+        .divider {
+            text-align: center;
+            color: #aaa;
+            font-size: 13px;
+            margin: 15px 0;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
         }
         label {
             display: block;
@@ -48,16 +57,7 @@
             margin-bottom: 3px;
             font-size: 15px;
         }
-        .label-urdu {
-            display: block;
-            font-weight: 600;
-            color: #5b4fcf;
-            margin-bottom: 6px;
-            font-size: 14px;
-            direction: rtl;
-            text-align: right;
-        }
-        input {
+        input[type="text"] {
             width: 100%;
             padding: 13px 15px;
             margin-bottom: 20px;
@@ -67,10 +67,20 @@
             background-color: #f8f9ff;
             transition: border 0.3s;
         }
-        input:focus {
+        input[type="text"]:focus {
             border-color: #2c3e8c;
             outline: none;
             background-color: white;
+        }
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 2px dashed #c0c8f0;
+            border-radius: 10px;
+            font-size: 14px;
+            background-color: #f8f9ff;
+            cursor: pointer;
         }
         button {
             width: 100%;
@@ -84,8 +94,12 @@
             font-weight: bold;
             letter-spacing: 0.5px;
             transition: opacity 0.3s;
+            margin-bottom: 10px;
         }
         button:hover { opacity: 0.9; }
+        .ocr-btn {
+            background: linear-gradient(135deg, #e65100, #ff8f00);
+        }
         .result {
             margin-top: 25px;
             padding: 20px;
@@ -99,6 +113,10 @@
         .result.error {
             background-color: #fdecea;
             border: 2px solid #f44336;
+        }
+        .result.ocr-result {
+            background-color: #fff8e1;
+            border: 2px solid #ffc107;
         }
         .instruction {
             font-size: 17px;
@@ -145,6 +163,7 @@
             font-size: 15px;
             cursor: pointer;
             font-weight: bold;
+            margin-bottom: 0;
         }
         .speak-btn:hover { background: #388e3c; }
         .lang-label {
@@ -155,6 +174,15 @@
             letter-spacing: 1px;
             margin-bottom: 4px;
         }
+        .ocr-text {
+            font-size: 14px;
+            color: #5d4037;
+            background-color: #fff8e1;
+            padding: 10px;
+            border-radius: 8px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
     </style>
 </head>
 <body>
@@ -163,20 +191,32 @@
         <p class="subtitle">AI Prescription Helper for Everyone</p>
         <p class="subtitle-urdu">ہر کسی کے لیے نسخہ مددگار</p>
 
+        <!-- Manual Input -->
         <label>💊 Drug Name — دوائی کا نام:</label>
-        <input type="text" id="drugName" placeholder="e.g. Paracetamol — مثال: پیراسیٹامول" />
+        <input type="text" id="drugName" placeholder="e.g. Paracetamol" />
 
         <label>📏 Dose — خوراک:</label>
         <input type="text" id="dose" placeholder="e.g. 500mg — یا لکھیں: not sure" />
 
         <label>🕐 Frequency — کتنی بار:</label>
-        <input type="text" id="frequency" placeholder="e.g. twice daily — دن میں دو بار" />
+        <input type="text" id="frequency" placeholder="e.g. twice daily" />
 
         <button onclick="getPrescription()">
             Get Instructions — ہدایات حاصل کریں
         </button>
 
+        <!-- OCR Section -->
+        <div class="divider">📷 OR — یا پھر prescription کی تصویر اپلوڈ کریں</div>
+
+        <label>📄 Upload Prescription Image — تصویر اپلوڈ کریں:</label>
+        <input type="file" id="prescriptionImage" accept="image/*" />
+
+        <button class="ocr-btn" onclick="scanPrescription()">
+            📷 Scan Prescription — نسخہ اسکین کریں
+        </button>
+
         <div class="result" id="result"></div>
+        <div class="result" id="ocrResult"></div>
     </div>
 
     <script>
@@ -223,6 +263,49 @@
                     msg.rate = 0.8;
                     speechSynthesis.speak(msg);
                 });
+            }
+        }
+
+        async function scanPrescription() {
+            const imageFile = document.getElementById('prescriptionImage').files[0];
+
+            if (!imageFile) {
+                alert('Please select an image first! — پہلے تصویر منتخب کریں!');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('image', imageFile);
+
+            const ocrResultDiv = document.getElementById('ocrResult');
+            ocrResultDiv.style.display = 'block';
+            ocrResultDiv.className = 'result ocr-result';
+            ocrResultDiv.innerHTML = '⏳ Scanning prescription... — نسخہ اسکین ہو رہا ہے...';
+
+            const response = await fetch('/api/ocr', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (!data.success) {
+                ocrResultDiv.className = 'result error';
+                ocrResultDiv.innerHTML = `
+                    <div class="warning">⚠️ ${data.warning}</div>
+                    <div class="disclaimer">${data.disclaimer}</div>
+                `;
+            } else {
+                ocrResultDiv.className = 'result ocr-result';
+                ocrResultDiv.innerHTML = `
+                    <p style="font-weight:bold; color:#e65100; margin-bottom:8px">
+                        📄 Extracted Text — نکالا گیا متن:
+                    </p>
+                    <div class="ocr-text">${data.extractedText}</div>
+                    <div class="disclaimer" style="margin-top:10px">
+                        ⚠️ ${data.message} Please verify this text and fill the form above.
+                    </div>
+                `;
             }
         }
     </script>

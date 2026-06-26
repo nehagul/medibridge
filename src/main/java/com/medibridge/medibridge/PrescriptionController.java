@@ -2,6 +2,7 @@ package com.medibridge.medibridge;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api")
@@ -10,13 +11,15 @@ public class PrescriptionController {
     @Autowired
     private DisclaimerService disclaimerService;
 
+    @Autowired
+    private OcrService ocrService;
+
     @GetMapping("/parse")
     public Object parsePrescription(
             @RequestParam String drugName,
             @RequestParam String dose,
             @RequestParam String frequency) {
 
-        // Unknown drug check
         if (!DrugDictionary.isDrugKnown(drugName)) {
             return new ErrorResponse(
                 "Drug not recognised. Please consult your doctor.",
@@ -25,9 +28,7 @@ public class PrescriptionController {
             );
         }
 
-        // Dose not sure check
-        if (dose.toLowerCase().trim().equals("not sure") || 
-            dose.toLowerCase().trim().equals("not sure")) {
+        if (dose.toLowerCase().trim().equals("not sure")) {
             return new ErrorResponse(
                 "Dose is unknown. Please consult your doctor or pharmacist for the correct dose.",
                 drugName,
@@ -42,6 +43,22 @@ public class PrescriptionController {
             disclaimerService.getMainDisclaimer()
         );
         return instruction;
+    }
+
+    @PostMapping("/ocr")
+    public Object scanPrescription(@RequestParam("image") MultipartFile image) {
+
+        OcrService.OcrResult result = ocrService.extractText(image);
+
+        if (!result.success) {
+            return new ErrorResponse(
+                result.message,
+                "unknown",
+                disclaimerService.getLowConfidenceDisclaimer()
+            );
+        }
+
+        return result;
     }
 
     static class ErrorResponse {

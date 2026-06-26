@@ -10,6 +10,7 @@ public class DrugInstructionTest {
         DrugInstruction instruction = new DrugInstruction(
             "Paracetamol", "500mg", "twice daily",
             "fever and pain relief",
+            "بخار اور درد سے نجات",
             "WARNING: Doctor's instruction is final."
         );
         assertEquals("Take 500mg of Paracetamol twice daily. Used for: fever and pain relief.",
@@ -21,6 +22,7 @@ public class DrugInstructionTest {
         DrugInstruction instruction = new DrugInstruction(
             "Aspirin", "100mg", "once daily",
             "blood thinning",
+            "خون پتلا کرنا",
             "WARNING: Doctor's instruction is final."
         );
         assertNotNull(instruction.getDisclaimer());
@@ -32,6 +34,7 @@ public class DrugInstructionTest {
         DrugInstruction instruction = new DrugInstruction(
             "Metformin", "500mg", "twice daily",
             "diabetes management",
+            "ذیابیطس کا علاج",
             "WARNING: Doctor's instruction is final."
         );
         assertEquals("Metformin", instruction.getDrugName());
@@ -42,6 +45,7 @@ public class DrugInstructionTest {
         DrugInstruction instruction = new DrugInstruction(
             "Ibuprofen", "400mg", "three times daily",
             "pain relief",
+            "درد سے نجات",
             "WARNING: Doctor's instruction is final."
         );
         assertEquals("400mg", instruction.getDose());
@@ -52,6 +56,7 @@ public class DrugInstructionTest {
         DrugInstruction instruction = new DrugInstruction(
             "Omeprazole", "20mg", "once daily",
             "acidity relief",
+            "تیزابیت سے نجات",
             "WARNING: Doctor's instruction is final."
         );
         assertEquals("once daily", instruction.getFrequency());
