@@ -1,60 +1,122 @@
-# MediBridge 🏥
+# 🏥 MediBridge
+### AI Prescription Interpreter for Low-Literacy Patients
 
-AI prescription interpreter for low-literacy patients in Pakistan and South Asia.
+[![Java](https://img.shields.io/badge/Java-Spring%20Boot-green)](https://spring.io/)
+[![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Active-brightgreen)]()
 
-## Problem
-Over 50% of patients in developing countries take medications incorrectly because 
-prescription labels are written in complex English medical language they cannot read.
+---
 
-## Solution
-MediBridge converts prescriptions into simple, clear instructions with:
-- Plain language explanation
-- Drug use information
-- Safety disclaimer on every output
-- Unknown drug detection — never guesses, always refers to doctor
+## 🌍 The Problem
 
-## Safety First
-- System never changes prescribed dose
-- Unknown drugs → doctor referral immediately
-- Disclaimer on every single output
-- Assistance only, never medical decisions
+Over **50% of patients** in developing countries like Pakistan take medications incorrectly — wrong dose, wrong time, wrong combination. Not because they don't care, but because:
 
-## Current Features (Phase 1)
-- 10 common drugs in dictionary
-- Simple instruction generation
-- Safety warning system
-- REST API
+- Prescriptions are written in complex English medical language
+- Many patients are low-literacy or non-English speakers
+- Elderly patients forget their dose times
+- No affordable, scalable solution exists
 
-## Tech Stack
-- Java Spring Boot
-- Maven
-- REST API
+This causes **125,000+ deaths annually** in the US alone. In Pakistan and South Asia, the numbers are far worse and largely uncounted.
 
-## Developer
-Neha Gul — CS Student, Islamabad
+---
 
-## Real User Testing — Phase 1
+## 💡 The Solution
 
-**Date:** June 2026  
-**Users Tested:** 3 family members (non-technical users)
+**MediBridge** converts any prescription into simple, clear instructions in **Urdu and English** — with audio support, dose reminders, and a built-in safety system.
 
-| User | Age | Background | Feedback |
-|------|-----|------------|----------|
-| Mother | 47 | School Teacher | "Very clear and easy to understand. The doctor warning at the end is very important." |
-| Father | 50 | Non-technical user | "Instructions were clear but it would be better in Urdu language." |
-| Sister | 17 | College Student | "This is really effective and helpful. A proper interface with buttons would make it even more user friendly." |
+> *"This information is for assistance only. Doctor's instruction is the final authority."*
+> — shown on every single output, cannot be disabled.
 
-**Overall Result:** All 3 users successfully understood medication instructions without any assistance.
+---
 
-**What worked well:**
-- Medication instructions were clear and simple
-- Doctor disclaimer was noticed and appreciated by all users
-- Drug name and dose information was easy to read
+## ✨ Features
 
-**Improvements needed (Phase 2 goals):**
-- Add Urdu language support — requested by Father
-- Add audio output — especially for elderly users
-- Add visual icons/pictures and proper interface — requested by Sister
-- Make interface more colorful and friendly
+| Feature | Description |
+|---------|-------------|
+| 💊 Drug Instructions | Simple English + Urdu instructions for 10 common drugs |
+| 🔊 Audio Output | Slow, clear speech at 0.75x speed for elderly users |
+| 🇵🇰 Bilingual UI | Full Urdu + English interface |
+| ⏰ Dose Reminder | Browser notification + sound at dose time |
+| 📷 OCR Scan | Upload prescription image — system extracts text |
+| ⚠️ Safety System | Unknown drugs → doctor referral. Never guesses. |
 
-**Conclusion:** MediBridge Phase 1 successfully communicates prescription information to non-technical users. User feedback directly shapes Phase 2 development priorities.
+---
+
+## 🛡️ Safety First
+
+MediBridge was designed with safety as the #1 priority:
+
+- ✅ System **never** changes prescribed dose
+- ✅ System **never** guesses unknown drugs — always refers to doctor
+- ✅ Disclaimer on **every single output** — cannot be disabled
+- ✅ "Not sure" dose → immediate doctor referral
+- ✅ OCR unclear → rescan prompt, never a guess
+- ✅ Assistance only — never medical decisions
+
+---
+
+## 🚀 Tech Stack
+
+- **Backend:** Java Spring Boot
+- **OCR:** Tesseract OCR (tess4j)
+- **Frontend:** HTML, CSS, JavaScript
+- **Audio:** Web Speech Synthesis API
+- **Build:** Maven
+
+---
+
+## 📁 Project Structure
+medibridge/
+
+├── src/main/java/com/medibridge/medibridge/
+
+│   ├── MedibridgeApplication.java     — Main entry point
+
+│   ├── DrugInstruction.java           — Drug instruction model
+
+│   ├── DrugDictionary.java            — 10 drugs with Urdu + English
+
+│   ├── PrescriptionController.java    — REST API controller
+
+│   ├── DisclaimerService.java         — Safety disclaimer system
+
+│   └── OcrService.java                — OCR prescription scanner
+
+├── src/main/resources/static/
+
+│   └── index.html                     — Bilingual web interface
+
+└── src/test/                          — 11 unit tests
+
+---
+
+## 🧪 Tests
+Tests run: 11, Failures: 0, Errors: 0 ✅
+
+- DrugDictionaryTest — 5 tests
+- DrugInstructionTest — 5 tests
+- MedibridgeApplicationTests — 1 test
+
+---
+
+## 🗺️ Roadmap
+Phase 1 ✅ Core engine — drug dictionary, safety system, tests
+
+Phase 2 ✅ Intelligence — audio, bilingual UI, web interface
+
+Phase 3 ✅ Field features — OCR scan, dose reminders
+
+Phase 4 ⏳ Polish — Google Vision API, MIT Solve submission
+
+---
+
+## 👩‍💻 Developer
+
+**Neha Gul** — CS Student, COMSATS University Islamabad, Pakistan
+- 2nd Semester — Building real-world health solutions
+
+---
+
+## 🌟 Impact Goal
+
+> MediBridge aims to help **2 billion+** people worldwide affected by low health literacy — starting from Pakistan.
